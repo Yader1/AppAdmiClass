@@ -1,0 +1,17 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      {{'label.app' | translate}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">{{'label.students' | translate}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <app-list-students></app-list-students>
+</ion-content>
