@@ -60,8 +60,12 @@ export class SqliteServiceService {
     ]);
   }
 
-  getStudents(){
+  getStudents(search?: string){
     let sql = 'SELECT * FROM students';
+
+    if(search){
+      sql += " WHERE lower(name) LIKE '%" + search.toLowerCase() + "%' or lower(surname) LIKE '%" + search.toLowerCase() + "%'";
+    }
 
     return this.db.executeSql( sql, []).then( respnse =>{
       let students = [];

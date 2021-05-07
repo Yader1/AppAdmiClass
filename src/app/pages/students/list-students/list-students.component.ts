@@ -22,8 +22,8 @@ export class ListStudentsComponent implements OnInit {
     this.getStudents();
   }
 
-  getStudents(){
-    this.sqlite.getStudents().then(students => {
+  getStudents(search?: string){
+    this.sqlite.getStudents(search).then(students => {
       this.students = students;
       console.log(students);
     })
@@ -38,6 +38,11 @@ export class ListStudentsComponent implements OnInit {
   editStudent(student: Student){
     this.studentsSelected = student;
     this.showForm = true;
+  }
+
+  filterList($event){
+    console.log($event);
+    this.getStudents($event.currentTarget.value);
   }
 
 }

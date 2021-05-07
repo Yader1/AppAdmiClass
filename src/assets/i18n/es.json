@@ -11,5 +11,7 @@
     "label.back": "Volver",
     "label.success": "¡Éxito!",
     "label.success.message.add.student": "¡Estudiante añadido!",
-    "label.success.message.edit.student": "¡Estudiante Modificado!"
+    "label.success.message.edit.student": "¡Estudiante Modificado!",
+    "label.classes": "Clases",
+    "label.payment": "Pagos"
 }
