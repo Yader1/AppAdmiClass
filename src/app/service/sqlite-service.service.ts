@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
+import { Class } from '../models/class';
 import { Student } from '../models/student';
 
 @Injectable({
@@ -28,6 +29,10 @@ export class SqliteServiceService {
       let sqlTableClass = 'CREATE TABLE IF NOT EXISTS "class" ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `date_start` TEXT, `date_end` TEXT, `id_student` INTEGER NOT NULL, `price` REAL NOT NULL, FOREIGN KEY(`id_student`) REFERENCES `id_student`(`id`) );';
       let sqlDelClass = 'DELETE FROM class;';
 
+      let sqlCl1 = "INSERT INTO class VALUES (1, '2020-10-03T15:00', '2020-10-03T16:00', 1, 10);";
+      let sqlCl2 = "INSERT INTO class VALUES (2, '2020-10-04T16:00', '2020-10-04T17:00', 2, 5);";
+      let sqlCl3 = "INSERT INTO class VALUES (3, '2020-10-05T17:00', '2020-10-05T18:00', 2, 15);";
+
       let sqlTablePayment = 'CREATE TABLE IF NOT EXISTS "payment" ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `date` TEXT, `id_class` INTEGER NOT NULL, `paid` REAL DEFAULT 0, FOREIGN KEY(`id_class`) REFERENCES `class`(`id`) );';
       let sqlDelPayment = 'DELETE FROM payment;';
 
@@ -40,6 +45,9 @@ export class SqliteServiceService {
           this.db.executeSql(sqlAli3, []),
           this.db.executeSql(sqlTableClass, []),
           this.db.executeSql(sqlDelClass, []),
+          this.db.executeSql(sqlCl1, []),
+          this.db.executeSql(sqlCl2, []),
+          this.db.executeSql(sqlCl3, []),
           this.db.executeSql(sqlTablePayment, []),
           this.db.executeSql(sqlDelPayment, [])
         ]
@@ -87,5 +95,50 @@ export class SqliteServiceService {
       student.phone,
       student.id
     ])
+  }
+
+  //Clases
+  createClass(c: Class){
+    const sql = 'INSERT INTO class(date_start, date_end, id_student, price) VALUES(?,?,?,?)';
+    return this.db.executeSql(sql, [
+      c.date_start,
+      c.date_end,
+      c.id_student,
+      c.price
+    ]);
+  }
+
+  getClasses(){
+    let sql = 'SELECT * from class ORDER BY  date_start, date_end';
+    return this.db.executeSql(sql, []).then( response=>{
+      let classes = [];
+
+      for (let index = 0; index < response.rows.length; index++) {
+        const row = response.rows.item(index);
+
+        let c: Class = row as Class;
+        classes.push(c);
+      }
+      return Promise.resolve(classes);
+    }).catch(error => Promise.reject(error))
+  }
+
+  updateClass(c: Class){
+    const sql = 'UPDATE class SET date_start=?, date_end=?, id_student=?, price=? WHERE id=?';
+    return this.db.executeSql(sql, [
+      c.date_start,
+      c.date_end,
+      c.id_student,
+      c.price,
+      c.id
+    ]);
+  }
+
+  deleteClass(c: Class){
+    const sql = 'DELETE FROM class WHERE id=?';
+
+    return this.db.executeSql(sql,[
+      c.id
+    ]);
   }
 }

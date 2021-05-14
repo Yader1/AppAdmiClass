@@ -13,5 +13,15 @@
     "label.success.message.add.student": "¡Estudiante añadido!",
     "label.success.message.edit.student": "¡Estudiante Modificado!",
     "label.classes": "Clases",
-    "label.payment": "Pagos"
+    "label.payment": "Pagos",
+    "label.no.clases": "No hay clases",
+    "label.add.class": "Añadir clase",
+    "label.class.date.start": "Fecha inicio",
+    "label.class.date.end": "Fecha final",
+    "label.form.class.student": "Estudiante",
+    "label.form.class.price": "Precio",
+    "label.edit.class": "Editar clase",
+    "label.success.message.add.class": "¡Clase añadida!",
+    "label.success.message.edit.class": "¡Clase editada!",
+    "label.success.message.remove.class": "¡Clase eliminada!"
 }
