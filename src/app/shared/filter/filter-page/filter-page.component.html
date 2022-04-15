@@ -1,3 +1,44 @@
-<p>
-  filter-page works!
-</p>
+<ion-grid fixed>
+  <ion-row>
+    <ion-col size="12">
+      <form (ngSubmit)="filterData()">
+        <ion-row>
+          <ion-col size="12">
+            <ion-item>
+              <ion-label>{{'label.class.date.start' | translate }}</ion-label>
+              <ion-datetime displayFormat="DD MM YYYY HH mm" (ngModel)="filter.date_start" name="date_start"></ion-datetime>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="12">
+            <ion-item>
+              <ion-label>{{'label.class.date.end' | translate }}</ion-label>
+              <ion-datetime displayFormat="DD MM YYYY HH mm" (ngModel)="filter.date_end" name="date_end"></ion-datetime>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="12">
+            <ion-item>
+              <ion-label>{{'label.filter.class.student' | translate }}</ion-label>
+              <ion-select (ngModel)="filter.id_student">
+                  <ion-select-option [value]="student.id" *ngFor="let student of students">{{student.name + ' ' + student.surname}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="12">
+           <ion-button expand="block" type="submit">
+             {{'label.filter' | translate }}
+           </ion-button>
+          </ion-col>
+        </ion-row>
+      </form>
+    </ion-col>
+  </ion-row>
+</ion-grid>

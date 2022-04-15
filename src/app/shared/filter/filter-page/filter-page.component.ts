@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Filter } from './../../../models/Filter';
+import { SqliteServiceService } from '../../../service/sqlite-service.service';
+import { Student } from 'src/app/models/student';
 
 @Component({
   selector: 'app-filter-page',
@@ -7,8 +10,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FilterPageComponent implements OnInit {
 
-  constructor() { }
+  @Input() filter: Filter;
+  public students: Student[];
 
-  ngOnInit() {}
+  constructor(
+    private sqliteManager: SqliteServiceService
+  ) { 
+    this.students = [];
+  }
+
+  filterData(){
+
+  }
+
+  ngOnInit() {
+    this.sqliteManager.getStudents().then(students => {
+      this.students = students;
+    })
+  }
 
 }

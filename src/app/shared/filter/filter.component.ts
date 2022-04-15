@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
+import { Filter } from 'src/app/models/Filter';
 import { FilterPageComponent } from './filter-page/filter-page.component';
 
 @Component({
@@ -9,6 +10,7 @@ import { FilterPageComponent } from './filter-page/filter-page.component';
 })
 export class FilterComponent implements OnInit {
 
+  @Input() filter: Filter;
   public showFilters: boolean;
 
   constructor(public popoverController: PopoverController) {
@@ -21,7 +23,7 @@ export class FilterComponent implements OnInit {
       backdropDismiss: true,
       event: ev,
       componentProps: {
-
+        "filter": this.filter
       }
     });
 

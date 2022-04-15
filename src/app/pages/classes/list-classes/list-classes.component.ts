@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Class } from 'src/app/models/class';
+import { Filter } from 'src/app/models/Filter';
 import { Student } from 'src/app/models/student';
 import { AlertService } from 'src/app/service/alert.service';
 import { SqliteServiceService } from 'src/app/service/sqlite-service.service';
@@ -16,6 +17,7 @@ export class ListClassesComponent implements OnInit {
   public showForm: boolean;
   public classSelected: Class;
   public students: Student[];
+  public filter: Filter;
 
   constructor(
     private sql:SqliteServiceService,
@@ -24,6 +26,7 @@ export class ListClassesComponent implements OnInit {
   ) { 
     this.classes = [];
     this.students = [];
+    this.filter = new Filter();
   }
 
   ngOnInit() {
