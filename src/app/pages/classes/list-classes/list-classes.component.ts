@@ -75,4 +75,9 @@ export class ListClassesComponent implements OnInit {
     }).catch(error => console.error(error));
   }
 
+  filterData($event){
+    this.filter = $event;
+    this.getClasses();
+  }
+
 }
