@@ -3,16 +3,20 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { IonicModule } from '@ionic/angular';
 import { ListDataComponent } from './list-data/list-data.component';
+import { FilterComponent } from './filter/filter.component';
+import { FilterPageComponent } from './filter/filter-page/filter-page.component';
 
 @NgModule({
-  declarations: [ListDataComponent],
+  declarations: [ListDataComponent, FilterComponent, FilterPageComponent],
   imports: [
     IonicModule,
     CommonModule,
     TranslateModule.forChild()
   ],
   exports:[
-    ListDataComponent
+    ListDataComponent,
+    FilterComponent,
+    FilterPageComponent
   ]
 })
 export class SharedModule { }
