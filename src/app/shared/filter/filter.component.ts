@@ -9,7 +9,11 @@ import { FilterPageComponent } from './filter-page/filter-page.component';
 })
 export class FilterComponent implements OnInit {
 
-  constructor(public popoverController: PopoverController) { }
+  public showFilters: boolean;
+
+  constructor(public popoverController: PopoverController) {
+    this.showFilters = false;
+   }
 
   async createPopover(ev: any){
     const popover = await this.popoverController.create({
@@ -22,14 +26,22 @@ export class FilterComponent implements OnInit {
     });
 
     popover.onDidDismiss().then( event => {
-
+      this.showFilters = false;
     });
 
     await popover.present();
   }
 
+  showHideFilters($event){
+    this.showFilters = !this.showFilters;
+
+    if(this.showFilters){
+      this.createPopover($event);
+    }
+  }
+
   ngOnInit() {
-    this.createPopover(null);
+    
   }
 
 }

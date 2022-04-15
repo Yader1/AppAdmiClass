@@ -23,5 +23,7 @@
     "label.edit.class": "Editar clase",
     "label.success.message.add.class": "¡Clase añadida!",
     "label.success.message.edit.class": "¡Clase editada!",
-    "label.success.message.remove.class": "¡Clase eliminada!"
+    "label.success.message.remove.class": "¡Clase eliminada!",
+    "label.hide.filters": "Ocultar filtros",
+    "label.show.filters": "Mostras filtros"
 }
