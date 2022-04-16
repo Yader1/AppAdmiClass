@@ -16,6 +16,7 @@ export class FilterComponent implements OnInit {
 
   constructor(public popoverController: PopoverController) {
     this.showFilters = false;
+    this.filterData = new EventEmitter<Filter>();
    }
 
   async createPopover(ev: any){

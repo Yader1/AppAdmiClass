@@ -36,7 +36,7 @@ export class ListClassesComponent implements OnInit {
   getClasses(){
     Promise.all(
       [
-        this.sql.getClasses(),
+        this.sql.getClasses(this.filter),
         this.sql.getStudents()
       ]
     ).then(results => {

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
 import { Class } from '../models/class';
+import { Filter } from '../models/Filter';
 import { Student } from '../models/student';
 
 @Injectable({
@@ -108,8 +109,23 @@ export class SqliteServiceService {
     ]);
   }
 
-  getClasses(){
-    let sql = 'SELECT * from class ORDER BY  date_start, date_end';
+  getClasses(filter: Filter = null){
+    let sql = 'SELECT * from class WHERE 1 ';
+
+    if(filter){
+      if(filter.date_start){
+        sql += " and date_start >= '" + filter.date_start + "' ";
+      }
+      if(filter.date_end){
+        sql += " and date_end <= '" + filter.date_end + "' ";
+      }
+      if(filter.id_student){
+        sql += " and id_student = " + filter.id_student + " ";
+      }
+    }
+
+    sql += 'ORDER BY  date_start, date_end';
+
     return this.db.executeSql(sql, []).then( response=>{
       let classes = [];
 
