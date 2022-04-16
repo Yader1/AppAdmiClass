@@ -28,5 +28,7 @@
     "label.show.filters": "Mostras filtros",
     "label.filter": "Filtrar",
     "label.filter.class.student": "Estudiante",
-    "label.reset": "Resetear filtro"
+    "label.reset": "Resetear filtro",
+    "label.no.payment": "No hay pagos",
+    "label.total": "Total"
 }

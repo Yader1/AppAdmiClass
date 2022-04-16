@@ -7,6 +7,9 @@ import { Tab3Page } from './tab3.page';
 import { ExploreContainerComponentModule } from '../../../explore-container/explore-container.module';
 
 import { Tab3PageRoutingModule } from './tab3-routing.module';
+import { ListPaymentComponent } from '../list-payment/list-payment.component';
+import { SharedModule } from '../../../shared/shared.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -16,7 +19,9 @@ import { Tab3PageRoutingModule } from './tab3-routing.module';
     ExploreContainerComponentModule,
     RouterModule.forChild([{ path: '', component: Tab3Page }]),
     Tab3PageRoutingModule,
+    SharedModule,
+    TranslateModule.forChild()
   ],
-  declarations: [Tab3Page]
+  declarations: [Tab3Page,  ListPaymentComponent]
 })
 export class Tab3PageModule {}

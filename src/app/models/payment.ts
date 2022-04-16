@@ -1,4 +1,4 @@
-export class payment{
+export class Payment{
     id: number;
     date: string;
     id_class: number;
