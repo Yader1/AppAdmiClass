@@ -20,14 +20,19 @@ export class FilterPageComponent implements OnInit {
     this.students = [];
   }
 
-  filterData(){
-    this.popoverController.dismiss(this.filter);
-  }
-
   ngOnInit() {
     this.sqliteManager.getStudents().then(students => {
       this.students = students;
     })
+  }
+
+  filterData(){
+    this.popoverController.dismiss(this.filter);
+  }
+
+  reset(){
+    this.filter = new Filter();
+    this.popoverController.dismiss(this.filter);
   }
 
 }

@@ -27,5 +27,6 @@
     "label.hide.filters": "Ocultar filtros",
     "label.show.filters": "Mostras filtros",
     "label.filter": "Filtrar",
-    "label.filter.class.student": "Estudiante"
+    "label.filter.class.student": "Estudiante",
+    "label.reset": "Resetear filtro"
 }
