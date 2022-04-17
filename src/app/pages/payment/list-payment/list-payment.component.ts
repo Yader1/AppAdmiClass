@@ -26,10 +26,22 @@ export class ListPaymentComponent implements OnInit {
     this.filter = new Filter();
    }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getPayments();
+  }
 
   getPayments(){
-
+    Promise.all(
+      [
+        this.sqliteManager.getPayments(this.filter),
+        this.sqliteManager.getClasses(),
+        this.sqliteManager.getStudents()
+      ]
+    ).then(results => {
+      this.payments = results[0];
+      this.classes = results[1];
+      this.students = results[2];
+    })
   }
 
   filterData(){

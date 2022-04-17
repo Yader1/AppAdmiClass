@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
 import { Class } from '../models/class';
 import { Filter } from '../models/Filter';
+import { Payment } from '../models/payment';
 import { Student } from '../models/student';
 
 @Injectable({
@@ -156,5 +157,28 @@ export class SqliteServiceService {
     return this.db.executeSql(sql,[
       c.id
     ]);
+  }
+
+  //Payments
+  getPayments(filter: Filter = null){
+    let sql = "SELECT p.id, p.date, p.id_class, p.paid FROM payment p, class c WHERE p.id_class = c.id ";
+
+    if(filter){
+
+    }
+
+    sql += " ORDER BY p.date";
+
+    return this.db.executeSql(sql, []).then( response => {
+      let payment = [];
+      for (let i = 0; i < response.rows.length; i++){
+        const row = response.rows.item(i);
+
+        let p: Payment = row as Payment;
+        payment.push(p);
+      }
+
+      return Promise.resolve(payment);
+    }).catch(error => Promise.reject(error));
   }
 }
