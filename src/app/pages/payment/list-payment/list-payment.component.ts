@@ -41,6 +41,18 @@ export class ListPaymentComponent implements OnInit {
       this.payments = results[0];
       this.classes = results[1];
       this.students = results[2];
+
+      this.associateObjects();
+    })
+  }
+
+  associateObjects(){
+    this.payments.forEach(p => {
+      p.class = this.classes.find(c => c.id == p.id_class);
+
+      if(p.class){
+        p.class.student = this.students.find(s => s.id === p.class.id_student);
+      }
     })
   }
 
