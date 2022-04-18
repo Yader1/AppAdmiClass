@@ -24,6 +24,15 @@
     <ion-range min="0" max="100"[(ngModel)]="classObj.price" name="price"></ion-range>{{classObj.price}}$
   </ion-item>
 
+  <ion-item>
+    <ion-label>{{'label.is.paid' | translate}}</ion-label>
+    <ion-toggle [(ngModel)]="paid" name="paid"></ion-toggle>
+  </ion-item>
+  <ion-item *ngIf="paid">
+    <ion-label>{{'label.date.paid' | translate}}</ion-label>
+    <ion-datetime display-format="DD MM YYYY HH mm" [(ngModel)]="payment.date" name="date_paid"></ion-datetime>
+  </ion-item>
+
   <ion-button expand="block" type="submit">{{(edit ? 'label.edit.class' : 'label.add.class') | translate}}</ion-button>
   <ion-button expand="block" type="button" (click)="closeForm()">{{'label.back' | translate}}</ion-button>
 

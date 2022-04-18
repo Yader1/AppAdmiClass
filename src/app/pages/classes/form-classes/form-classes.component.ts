@@ -4,6 +4,7 @@ import { Class } from 'src/app/models/class';
 import { Student } from 'src/app/models/student';
 import { AlertService } from 'src/app/service/alert.service';
 import { SqliteServiceService } from 'src/app/service/sqlite-service.service';
+import { Payment } from 'src/app/models/payment';
 
 @Component({
   selector: 'app-form-classes',
@@ -13,8 +14,10 @@ import { SqliteServiceService } from 'src/app/service/sqlite-service.service';
 export class FormClassesComponent implements OnInit {
 
   @Input() classObj: Class;
+  public payment: Payment;
   public edit:boolean;
   public students: Student[];
+  public paid: boolean;
 
   @Output() close: EventEmitter<boolean>;
 
@@ -25,12 +28,14 @@ export class FormClassesComponent implements OnInit {
   ) { 
     this.close = new EventEmitter<boolean>();
     this.students = [];
+    this.paid = false;
   }
 
   ngOnInit() {
 
     if(!this.classObj){
       this.classObj = new Class();
+      this.payment = new Payment();
       this.classObj.price = 0;
       this.edit = false;
     }else{

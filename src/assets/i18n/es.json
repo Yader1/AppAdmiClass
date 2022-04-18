@@ -30,5 +30,7 @@
     "label.filter.class.student": "Estudiante",
     "label.reset": "Resetear filtro",
     "label.no.payment": "No hay pagos",
-    "label.total": "Total"
+    "label.total": "Total",
+    "label.is.paid": "¿Pagado?",
+    "label.date.paid": "Fecha pago"
 }
