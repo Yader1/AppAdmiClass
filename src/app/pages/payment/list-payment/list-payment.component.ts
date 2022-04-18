@@ -43,6 +43,7 @@ export class ListPaymentComponent implements OnInit {
       this.students = results[2];
 
       this.associateObjects();
+      this. calculateTotal();
     })
   }
 
@@ -54,6 +55,16 @@ export class ListPaymentComponent implements OnInit {
         p.class.student = this.students.find(s => s.id === p.class.id_student);
       }
     })
+  }
+
+  calculateTotal(){
+    let total = 0;
+
+    this.payments.forEach(p => {
+      total += p.class.price;
+    });
+
+    this.total = total;
   }
 
   filterData(){
