@@ -22,7 +22,7 @@ export class ListPaymentComponent implements OnInit {
     this.payments = [];
     this.classes = [];
     this.students = [];
-    this.total = 0;
+    this.total = 0; 
     this.filter = new Filter();
    }
 
@@ -44,7 +44,7 @@ export class ListPaymentComponent implements OnInit {
       this.students = results[2];
 
       this.associateObjects();
-      this. calculateTotal();
+      this.calculateTotal();
     })
   }
 

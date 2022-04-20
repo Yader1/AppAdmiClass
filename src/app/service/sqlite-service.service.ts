@@ -38,6 +38,10 @@ export class SqliteServiceService {
       let sqlTablePayment = 'CREATE TABLE IF NOT EXISTS "payment" ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `date` TEXT, `id_class` INTEGER NOT NULL, `paid` REAL DEFAULT 0, FOREIGN KEY(`id_class`) REFERENCES `class`(`id`) );';
       let sqlDelPayment = 'DELETE FROM payment;';
 
+      let sqlP1 = "INSERT INTO payment VALUES (1, '2020-10-03T15:00', 1, 1);";
+      let sqlP2 = "INSERT INTO payment VALUES (2, null, 2, 0);";
+      let sqlP3 = "INSERT INTO payment VALUES (3, '2020-10-07T17:00', 3, 1);";
+
       return Promise.all(
         [
           this.db.executeSql(sqlTableAlumnos, []),
@@ -51,7 +55,10 @@ export class SqliteServiceService {
           this.db.executeSql(sqlCl2, []),
           this.db.executeSql(sqlCl3, []),
           this.db.executeSql(sqlTablePayment, []),
-          this.db.executeSql(sqlDelPayment, [])
+          this.db.executeSql(sqlDelPayment, []),
+          this.db.executeSql(sqlP1, []),
+          this.db.executeSql(sqlP2, []),
+          this.db.executeSql(sqlP3, [])
         ]
       ).then( () =>{
           return true;
@@ -183,7 +190,7 @@ export class SqliteServiceService {
   }
 
   createPayment(p: Payment){
-    const sql = "INSERT INTO payment(date, id_class, paid) VALUE(?,?,?)";
+    const sql = "INSERT INTO payment(date, id_class, paid) VALUES(?,?,?)";
     return this.db.executeSql(sql, [
       p.date,
       p.id_class,
