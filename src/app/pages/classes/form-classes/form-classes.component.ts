@@ -63,15 +63,18 @@ export class FormClassesComponent implements OnInit {
       })
 
     }else{
-      this.sql.createClass(this.classObj).then(() =>{
+      this.sql.createClass(this.classObj).then(c => {
+        console.log(c)
+        this.payment.id_class = c.insertId;
+        this.payment.paid = this.paid ? 1 : 0;
+        this.sql.createPayment(this.payment);
+
         this.alertService.alertSuccess(
           this.translate.instant('label.success'),
           this.translate.instant('label.success.message.add.class')
         );
         this.closeForm();
-      })
+      });
     }
-    
   }
-
 }

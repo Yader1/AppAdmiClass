@@ -39,6 +39,7 @@ export class ListPaymentComponent implements OnInit {
       ]
     ).then(results => {
       this.payments = results[0];
+      console.log(this.payments);
       this.classes = results[1];
       this.students = results[2];
 

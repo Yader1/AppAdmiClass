@@ -181,4 +181,13 @@ export class SqliteServiceService {
       return Promise.resolve(payment);
     }).catch(error => Promise.reject(error));
   }
+
+  createPayment(p: Payment){
+    const sql = "INSERT INTO payment(date, id_class, paid) VALUE(?,?,?)";
+    return this.db.executeSql(sql, [
+      p.date,
+      p.id_class,
+      p.paid
+    ]);
+  }
 }
