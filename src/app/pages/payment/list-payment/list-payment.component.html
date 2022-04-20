@@ -17,7 +17,17 @@
       <ion-row>
         <ion-col size="12">
           <app-list-data [data]="payments" [emptyText]="'label.no.payment'" [showAdd]="false">
-
+            <ng-template #templateData let-item="item">
+              <ion-item>
+                <ion-label>
+                  {{ 
+                    item.class?.student?.name + ' ' +  item.class?.student?.surname + ' - ' +
+                    ((item.date ? item.date : item.class?.date_start) | date: 'dd MMM yyyy HH mm') + ' - ' +
+                    ((item.paid === 1 ? 'label.paid' : 'label.no.paid') | translate )
+                  }}
+                </ion-label>
+              </ion-item>
+            </ng-template>
           </app-list-data>
         </ion-col>
       </ion-row>
