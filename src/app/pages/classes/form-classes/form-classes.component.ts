@@ -18,6 +18,8 @@ export class FormClassesComponent implements OnInit {
   public edit:boolean;
   public students: Student[];
   public paid: boolean;
+  public alreadyPaid: boolean;
+  public load: boolean;
 
   @Output() close: EventEmitter<boolean>;
 
@@ -38,8 +40,22 @@ export class FormClassesComponent implements OnInit {
       this.payment = new Payment();
       this.classObj.price = 0;
       this.edit = false;
+      this.load = true;
+      this.alreadyPaid = false;
     }else{
       this.edit = true;
+
+      this.sql.getPaymentByClass(this.classObj.id).then(p =>{
+        if(p){
+          this.payment = p;
+          console.log(p);
+          this.paid = p.paid === 1;
+          this.alreadyPaid = p.paid === 1;
+        }else{
+          this.paid = false;
+        }
+        this.load = true;
+      })
     }
 
     this.sql.getStudents().then(students => {

@@ -24,9 +24,9 @@
     <ion-range min="0" max="100"[(ngModel)]="classObj.price" name="price"></ion-range>{{classObj.price}}$
   </ion-item>
 
-  <ion-item>
+  <ion-item *ngIf="load">
     <ion-label>{{'label.is.paid' | translate}}</ion-label>
-    <ion-toggle [(ngModel)]="paid" name="paid"></ion-toggle>
+    <ion-toggle [disabled]="edit && alreadyPaid" [(ngModel)]="paid" name="paid"></ion-toggle>
   </ion-item>
   <ion-item *ngIf="paid">
     <ion-label>{{'label.date.paid' | translate}}</ion-label>

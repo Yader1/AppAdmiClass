@@ -197,4 +197,20 @@ export class SqliteServiceService {
       p.paid
     ]);
   }
+
+  getPaymentByClass(idClass: number){
+    const sql = "SELECT * FROM payment WHERE id_class = ?";
+    return this.db.executeSql(sql, [
+      idClass
+    ]).then( response => {
+      let payment: Payment = null;
+      if (response.rows.length > 0){
+        const row = response.rows.item(0);
+
+        payment = row as Payment;
+      }
+
+      return Promise.resolve(payment);
+    }).catch(error => Promise.reject(error));
+  }
 }
