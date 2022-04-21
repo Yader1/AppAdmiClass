@@ -70,6 +70,12 @@ export class FormClassesComponent implements OnInit {
   addEditClass(){
     if(this.edit){
       this.sql.updateClass(this.classObj).then(c => {
+
+        if(this.paid){
+          this.payment.paid = 1;
+          this.sql.updatePayment(this.payment);
+        }
+        
         console.log(c)
         this.alertService.alertSuccess(
           this.translate.instant('label.success'),

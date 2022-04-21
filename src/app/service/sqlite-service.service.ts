@@ -213,4 +213,11 @@ export class SqliteServiceService {
       return Promise.resolve(payment);
     }).catch(error => Promise.reject(error));
   }
+
+  updatePayment(p: Payment){
+    const sql = "UPDATE payment SET date=?, id_class?, paid=? WHERE id=?";
+    return this.db.executeSql(sql, [
+      p.date, p.id_class, p.paid, p.id
+    ])
+  }
 }
