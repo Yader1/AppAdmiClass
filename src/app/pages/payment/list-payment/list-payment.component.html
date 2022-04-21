@@ -18,8 +18,8 @@
         <ion-col size="12">
           <app-list-data [data]="payments" [emptyText]="'label.no.payment'" [showAdd]="false">
             <ng-template #templateData let-item="item">
-              <ion-item>
-                <ion-label>
+              <ion-item [ngClass]="{'no-paid': item.paid === 0, 'paid': item.paid === 1}">
+                <ion-label class="ion-text-wrap">
                   {{ 
                     item.class?.student?.name + ' ' +  item.class?.student?.surname + ' - ' +
                     ((item.date ? item.date : item.class?.date_start) | date: 'dd MMM yyyy HH mm') + ' - ' +
