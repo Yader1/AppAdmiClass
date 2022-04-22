@@ -168,13 +168,13 @@ export class SqliteServiceService {
 
   //Payments
   getPayments(filter: Filter = null){
-    let sql = "SELECT p.id, p.date, p.id_class, p.paid FROM payment p, class c WHERE p.id_class = c.id ";
+    let sql = 'SELECT p.id, p.date, p.id_class, p.paid FROM payment p, class c WHERE p.id_class = c.id ';
 
     if(filter){
 
     }
 
-    sql += " ORDER BY p.date";
+    sql += ' ORDER BY p.date';
 
     return this.db.executeSql(sql, []).then( response => {
       let payment = [];
@@ -190,7 +190,7 @@ export class SqliteServiceService {
   }
 
   createPayment(p: Payment){
-    const sql = "INSERT INTO payment(date, id_class, paid) VALUES(?,?,?)";
+    const sql = 'INSERT INTO payment(date, id_class, paid) VALUES(?,?,?)';
     return this.db.executeSql(sql, [
       p.date,
       p.id_class,
@@ -199,7 +199,7 @@ export class SqliteServiceService {
   }
 
   getPaymentByClass(idClass: number){
-    const sql = "SELECT * FROM payment WHERE id_class = ?";
+    const sql = 'SELECT * FROM payment WHERE id_class = ?';
     return this.db.executeSql(sql, [
       idClass
     ]).then( response => {
@@ -215,9 +215,12 @@ export class SqliteServiceService {
   }
 
   updatePayment(p: Payment){
-    const sql = "UPDATE payment SET date=?, id_class?, paid=? WHERE id=?";
+    const sql = 'UPDATE payment SET date=?, id_class=?, paid=? WHERE id = ?';
     return this.db.executeSql(sql, [
-      p.date, p.id_class, p.paid, p.id
+      p.date, 
+      p.id_class, 
+      p.paid, 
+      p.id
     ])
   }
 }
