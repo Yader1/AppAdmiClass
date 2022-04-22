@@ -2,7 +2,17 @@
   <ion-row>
     <ion-col size="12">
       <form (ngSubmit)="filterData()">
-        <ion-row>
+
+        <ion-row *ngIf="payment">
+          <ion-col size="12">
+            <ion-item>
+              <ion-label>{{'label.paid' | translate }}</ion-label>
+              <ion-toggle [(ngModel)]="filter.paid" name="paid" (ionChange)="cleanDates()"></ion-toggle>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row *ngIf="!payment || filter.paid">
           <ion-col size="12">
             <ion-item>
               <ion-label>{{'label.class.date.start' | translate }}</ion-label>
@@ -11,7 +21,7 @@
           </ion-col>
         </ion-row>
 
-        <ion-row>
+        <ion-row *ngIf="!payment || filter.paid">
           <ion-col size="12">
             <ion-item>
               <ion-label>{{'label.class.date.end' | translate }}</ion-label>

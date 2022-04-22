@@ -12,6 +12,7 @@ import { PopoverController } from '@ionic/angular';
 export class FilterPageComponent implements OnInit {
 
   @Input() filter: Filter;
+  @Input() payment: boolean; 
   public students: Student[];
 
   constructor(
@@ -24,6 +25,13 @@ export class FilterPageComponent implements OnInit {
     this.sqliteManager.getStudents().then(students => {
       this.students = students;
     })
+  }
+
+  cleanDates(){
+    if(!this.filter.paid){
+      this.filter.date_start = null;
+      this.filter.date_end = null;
+    }
   }
 
   filterData(){

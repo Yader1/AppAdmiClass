@@ -11,6 +11,7 @@ import { FilterPageComponent } from './filter-page/filter-page.component';
 export class FilterComponent implements OnInit {
 
   @Input() filter: Filter;
+  @Input() payment = false;
   public showFilters: boolean;
   @Output() filterData: EventEmitter<Filter>;
 
@@ -25,7 +26,8 @@ export class FilterComponent implements OnInit {
       backdropDismiss: true,
       event: ev,
       componentProps: {
-        "filter": this.filter
+        "filter": this.filter,
+        "payment": this.payment
       }
     });
 
