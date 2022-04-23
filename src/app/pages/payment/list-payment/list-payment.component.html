@@ -1,7 +1,7 @@
 <ion-grid>
   <ion-row>
     <ion-col size="12">
-      <app-filter [filter]="filter" [payment]="true" (filterData)="filterData()"></app-filter>
+      <app-filter [filter]="filter" [payment]="true" (filterData)="filterData($event)"></app-filter>
 
       <ion-row>
         <ion-col size="12">

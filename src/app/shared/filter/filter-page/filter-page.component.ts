@@ -19,9 +19,15 @@ export class FilterPageComponent implements OnInit {
     private sqliteManager: SqliteServiceService, private popoverController: PopoverController
   ) { 
     this.students = [];
+
   }
 
   ngOnInit() {
+
+    if(this.filter.paid == null){
+      this.filter.paid = false;
+    }
+
     this.sqliteManager.getStudents().then(students => {
       this.students = students;
     })

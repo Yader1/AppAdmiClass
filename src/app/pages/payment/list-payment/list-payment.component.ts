@@ -68,8 +68,9 @@ export class ListPaymentComponent implements OnInit {
     this.total = total;
   }
 
-  filterData(){
-    
+  filterData($event){
+    this.filter = $event;
+    this.getPayments();
   }
 
 }
