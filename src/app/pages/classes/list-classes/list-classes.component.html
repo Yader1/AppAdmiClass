@@ -30,10 +30,15 @@
                   </ion-item>
 
                 <ion-item-options>
+                  <ion-item-option *ngIf="item.needPay" color="success" (click)="payClass(item)">
+                    <ion-icon slot="icon-only" name="cash-outline"></ion-icon>
+                  </ion-item-option>
+
+
                   <ion-item-option color="warning" (click)="editClass(item)">
                     <ion-icon slot="icon-only" name="pencil-outline"></ion-icon>
                   </ion-item-option>
-
+                  
                   <ion-item-option color="danger" (click)="removeClass(item)">
                     <ion-icon slot="icon-only" name="trash"></ion-icon>
                   </ion-item-option>

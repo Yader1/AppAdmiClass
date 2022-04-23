@@ -95,4 +95,8 @@ export class ListClassesComponent implements OnInit {
     this.getClasses();
   }
 
+  payClass(c: Class){
+
+  }
+
 }
