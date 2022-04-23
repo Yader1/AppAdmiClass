@@ -25,16 +25,16 @@ export class SqliteServiceService {
       let sqlTableAlumnos = 'CREATE TABLE IF NOT EXISTS "students" ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `surname` TEXT, `email` TEXT NOT NULL, `phone` TEXT NOT NULL, `active` INTEGER DEFAULT 1 );';
       let sqlDelAlumnos = 'DELETE FROM students;';
 
-      let sqlAli1 = "INSERT INTO students VALUES (1, 'Fer', 'Ure', 't1@t.com', '123456', 1);";
-      let sqlAli2 = "INSERT INTO students VALUES (2, 'Nando', 'Ure', 't2@t.com', '654321', 1);";
-      let sqlAli3 = "INSERT INTO students VALUES (3, 'Ricardo', 'Hervas', 't2@t.com', '159753', 1);";
+      let sqlAli1 = "INSERT INTO students VALUES (1, 'Yader', 'Campbell', 'yader@email.com', '123456', 1);";
+      let sqlAli2 = "INSERT INTO students VALUES (2, 'Joan', 'Alvarado', 'joan@gmail.com', '654321', 1);";
+      let sqlAli3 = "INSERT INTO students VALUES (3, 'Ricardo', 'Hervas', 'richars@yahoo.com', '159753', 1);";
 
       let sqlTableClass = 'CREATE TABLE IF NOT EXISTS "class" ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `date_start` TEXT, `date_end` TEXT, `id_student` INTEGER NOT NULL, `price` REAL NOT NULL, FOREIGN KEY(`id_student`) REFERENCES `id_student`(`id`) );';
       let sqlDelClass = 'DELETE FROM class;';
 
       let sqlCl1 = "INSERT INTO class VALUES (1, '2020-10-03T15:00', '2020-10-03T16:00', 1, 10);";
       let sqlCl2 = "INSERT INTO class VALUES (2, '2020-10-04T16:00', '2020-10-04T17:00', 2, 5);";
-      let sqlCl3 = "INSERT INTO class VALUES (3, '2020-10-05T17:00', '2020-10-05T18:00', 2, 15);";
+      let sqlCl3 = "INSERT INTO class VALUES (3, '2020-10-05T17:00', '2020-10-05T18:00', 3, 15);";
 
       let sqlTablePayment = 'CREATE TABLE IF NOT EXISTS "payment" ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `date` TEXT, `id_class` INTEGER NOT NULL, `paid` REAL DEFAULT 0, FOREIGN KEY(`id_class`) REFERENCES `class`(`id`) );';
       let sqlDelPayment = 'DELETE FROM payment;';
