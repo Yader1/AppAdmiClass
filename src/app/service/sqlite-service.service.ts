@@ -4,6 +4,7 @@ import { Class } from '../models/class';
 import { Filter } from '../models/Filter';
 import { Payment } from '../models/payment';
 import { Student } from '../models/student';
+import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root'
@@ -122,10 +123,10 @@ export class SqliteServiceService {
 
     if(filter){
       if(filter.date_start){
-        sql += " and date_start >= '" + filter.date_start + "' ";
+        sql += " and date_start >= '" + moment(filter.date_start).format("YYYY-MM-DDTHH:mm") + "' ";
       }
       if(filter.date_end){
-        sql += " and date_end <= '" + filter.date_end + "' ";
+        sql += " and date_end <= '" +  moment(filter.date_end).format("YYYY-MM-DDTHH:mm") + "' ";
       }
       if(filter.id_student){
         sql += " and id_student = " + filter.id_student + " ";
@@ -180,17 +181,17 @@ export class SqliteServiceService {
       }
       if(filter.date_start){
         if(filter.paid){
-          sql += " and p.date >= '" + filter.date_start + "'";
+          sql += " and p.date >= '" + moment(filter.date_start).format("YYYY-MM-DDTHH:mm") + "'";
         }else{
-        sql += " and c.date_start >= '" + filter.date_start + "'";
+        sql += " and c.date_start >= '" + moment(filter.date_start).format("YYYY-MM-DDTHH:mm") + "'";
         }
       }
 
       if(filter.date_end){
         if(filter.paid){
-          sql += " and p.date <= '" + filter.date_end + "'";
+          sql += " and p.date <= '" + moment(filter.date_end).format("YYYY-MM-DDTHH:mm") + "'";
         }else{
-        sql += " and c.date_end <= '" + filter.date_end + "'";
+        sql += " and c.date_end <= '" + moment(filter.date_end).format("YYYY-MM-DDTHH:mm") + "'";
         }
       }
 

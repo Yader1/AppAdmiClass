@@ -6,6 +6,8 @@ import { AlertService } from 'src/app/service/alert.service';
 import { SqliteServiceService } from 'src/app/service/sqlite-service.service';
 import { Payment } from 'src/app/models/payment';
 
+import * as moment from 'moment';
+
 @Component({
   selector: 'app-form-classes',
   templateUrl: './form-classes.component.html',
@@ -68,11 +70,16 @@ export class FormClassesComponent implements OnInit {
   }
 
   addEditClass(){
+
+    this.classObj.date_start = moment(this.classObj.date_start).format("YYYY-MM-DDTHH:mm");
+    this.classObj.date_end = moment(this.classObj.date_end).format("YYYY-MM-DDTHH:mm");
+
     if(this.edit){
       this.sql.updateClass(this.classObj).then(c => {
 
         if(this.paid){
           this.payment.paid = 1;
+          this.payment.date = moment(this.payment.date).format("YYYY-MM-DDTHH:mm");
           this.sql.updatePayment(this.payment);
         }
         
@@ -87,6 +94,10 @@ export class FormClassesComponent implements OnInit {
     }else{
       this.sql.createClass(this.classObj).then(c => {
         console.log(c)
+        if(this.paid){
+          this.payment.date = moment(this.payment.date).format("YYYY-MM-DDTHH:mm");
+        }
+
         this.payment.id_class = c.insertId;
         this.payment.paid = this.paid ? 1 : 0;
         this.sql.createPayment(this.payment);
