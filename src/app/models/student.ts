@@ -5,4 +5,5 @@ export class Student{
     email: string;
     phone: string;
     active: number;
+  needPay: boolean;
 }

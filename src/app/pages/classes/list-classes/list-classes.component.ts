@@ -5,6 +5,7 @@ import { Filter } from 'src/app/models/Filter';
 import { Student } from 'src/app/models/student';
 import { AlertService } from 'src/app/service/alert.service';
 import { SqliteServiceService } from 'src/app/service/sqlite-service.service';
+import { Payment } from '../../../models/payment';
 
 @Component({
   selector: 'app-list-classes',
@@ -17,6 +18,7 @@ export class ListClassesComponent implements OnInit {
   public showForm: boolean;
   public classSelected: Class;
   public students: Student[];
+  public payments: Payment[];
   public filter: Filter;
 
   constructor(
@@ -26,6 +28,7 @@ export class ListClassesComponent implements OnInit {
   ) { 
     this.classes = [];
     this.students = [];
+    this.payments = [];
     this.filter = new Filter();
   }
 
@@ -37,12 +40,15 @@ export class ListClassesComponent implements OnInit {
     Promise.all(
       [
         this.sql.getClasses(this.filter),
-        this.sql.getStudents()
+        this.sql.getStudents(),
+        this.sql.getPayments()
       ]
     ).then(results => {
       this.classes = results[0];
       this.students = results[1];
+      this.payments = results[2];
       this.associateStudentsClasess();
+      this.associatePaymentClasess();
       console.log(this.classes);
     })
   }
@@ -51,6 +57,15 @@ export class ListClassesComponent implements OnInit {
     this.classes.forEach(c => {
       let student = this.students.find(s => s.id === c.id_student);
       c.student = student;
+    })
+  }
+
+  associatePaymentClasess(){
+    this.payments.forEach(p => {
+      let classFound = this.students.find(s => p.id === p.id_class);
+      if(classFound){
+        classFound.needPay = p.paid === 0 ; 
+      }
     })
   }
 
