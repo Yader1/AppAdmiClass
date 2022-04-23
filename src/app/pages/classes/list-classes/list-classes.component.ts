@@ -5,7 +5,7 @@ import { Filter } from 'src/app/models/Filter';
 import { Student } from 'src/app/models/student';
 import { AlertService } from 'src/app/service/alert.service';
 import { SqliteServiceService } from 'src/app/service/sqlite-service.service';
-import { Payment } from '../../../models/payment';
+import { Payment } from 'src/app/models/payment';
 
 @Component({
   selector: 'app-list-classes',
@@ -62,9 +62,9 @@ export class ListClassesComponent implements OnInit {
 
   associatePaymentClasess(){
     this.payments.forEach(p => {
-      let classFound = this.students.find(s => p.id === p.id_class);
+      let classFound = this.classes.find(c => c.id === p.id_class);
       if(classFound){
-        classFound.needPay = p.paid === 0 ; 
+        classFound.needPay = p.paid === 0; 
       }
     })
   }
@@ -96,7 +96,23 @@ export class ListClassesComponent implements OnInit {
   }
 
   payClass(c: Class){
+    this.sql.getPaymentByClass(c.id).then( p => {
+      if(p){
+        p.paid = 1;
+        this.sql.updatePayment(p).then( () => {
+          this.alertService.alertSuccess(
+            this.translate.instant('label.success'),
+            this.translate.instant('label.success.message.py.class')
+          );
 
+          this.getClasses();
+        }).catch(error =>{
+          console.error(error);
+        });
+      }
+    }).catch(error =>{
+      console.error(error);
+    });
   }
 
 }

@@ -34,5 +34,6 @@
     "label.is.paid": "¿Pagado?",
     "label.date.paid": "Fecha pago",
     "label.paid": "Pagado",
-    "label.no.paid": "No pagado"
+    "label.no.paid": "No pagado",
+    "label.success.message.py.class": "Clase pagada"
 }
