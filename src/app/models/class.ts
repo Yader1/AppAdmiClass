@@ -7,4 +7,6 @@ export class Class {
     id_student: number;
     price: number;
     student?: Student;
+
+    needPay?: boolean;
 }
